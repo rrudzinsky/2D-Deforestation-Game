@@ -5,15 +5,15 @@ using UnityEngine;
 public class GameLoader : MonoBehaviour
 {
     public GameObject tree;
+    public GameObject lumberjack;
 
     // Update is called once per frame
-    public void LoadGame()
+    public void Start()
     {
         Camera camera = Camera.main;
         float halfHeight = camera.orthographicSize*(0.75f);
         float halfWidth = camera.aspect * halfHeight*(0.75f);
 
-        GameObject.Find("PlayButton").SetActive(false);
         for(var i = 0; i < 10; i++)
         {
             Vector2 randomPosition = new Vector2(Random.Range(-1*halfWidth, halfWidth), Random.Range(-1*halfHeight, halfHeight));
@@ -21,7 +21,7 @@ public class GameLoader : MonoBehaviour
             var treeObject = Instantiate(tree, randomPosition, Quaternion.identity);
             treeObject.transform.SetParent(GameObject.Find("Trees").transform);
         }
-
+        Instantiate(lumberjack, new Vector2(-1.72f, -3.21f), Quaternion.identity);
     }
 }
 
